@@ -5,8 +5,7 @@ describe('User visits index', () => {
     /*
      * Run `npm start` in the terminal and reload the page. Expect the webpage to be visible and the order form to be empty.
      */
-    // Edit the line below
-    it('starts with an empty order (Behavior 1)', () => {
+    it('starts with a blank order (Behavior 1)', () => {
       browser.url('/');
 
       assert.equal(browser.getText('#deliver-to span'), '');
@@ -88,4 +87,22 @@ describe('User visits index', () => {
       assert.include(browser.getText('#size'), optionNum);
     });
 	});
+  
+  describe('to clear an order', () => {
+    it('deletes the selected options', () => {
+      const name = 'Indecisive Person';
+      const time = '10:00';
+
+      browser.url('/');
+      browser.setValue('#name', name);
+      browser.click('#submit-order');
+      browser.click('#clear-order');
+      browser.url('/');
+
+      assert.equal(browser.getText('#deliver-to span'), '');
+      assert.equal(browser.getText('#cake-type span'), '');
+      assert.equal(browser.getText('#fillings span'), '');
+      assert.equal(browser.getText('#size span'), '');
+    });
+  });
 });

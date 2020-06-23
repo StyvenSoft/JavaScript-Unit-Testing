@@ -1,6 +1,6 @@
 const Order = require('../../models/order');
-const {assert} = require('chai');
-const {mongoose, databaseUrl, options} = require('../../database');
+const { assert } = require('chai');
+const { mongoose, databaseUrl, options } = require('../../database');
 
 describe('Order', () => {
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe('Order', () => {
   });
 
   describe('.updateOrCreate', () => {
-    describe('when a record already exists', () =>{
+    describe('when a record already exists', () => {
       it('updates the record', async () => {
         const partialOrder = {
           name: 'Regular Joe',
@@ -23,7 +23,7 @@ describe('Order', () => {
         const update = ['Apple', 'Bacon', 'Chocolate Chips'];
         const existingOrder = await Order.create(partialOrder);
 
-        const updatedOrder = await Order.updateOrCreate({fillings: update});
+        const updatedOrder = await Order.updateOrCreate({ fillings: update });
 
         const allOrders = await Order.find({});
         assert.equal(allOrders.length, 1);
@@ -34,7 +34,7 @@ describe('Order', () => {
       });
     });
 
-    describe('when a record does not exist', () =>{
+    describe('when a record does not exist', () => {
       it('creates the record', async () => {
         let healthyOrder = {
           name: 'Healthy Person',
@@ -78,7 +78,7 @@ describe('Order', () => {
     it('is an Array', () => {
       const fillings = ['Apple', 'Bacon'];
 
-      const order = new Order({fillings});
+      const order = new Order({ fillings });
 
       // toObject resolves issues with mongoose metadata
       assert.deepEqual(order.fillings.toObject(), fillings);
@@ -89,7 +89,7 @@ describe('Order', () => {
     it('is a String', () => {
       const sizeAsAnInt = 3;
 
-      const order = new Order({size: sizeAsAnInt});
+      const order = new Order({ size: sizeAsAnInt });
 
       assert.strictEqual(order.size, sizeAsAnInt.toString());
     });

@@ -60,22 +60,6 @@ describe('Routes', () => {
   });
 
   describe('POST /place-order', () => {
-    /*
-    it('rejects an empty name', async () => {
-      const name = 'original name';
-      const emptyName = '';
-      const order = await Order.create({ name: 'original name' });
-      const response = await request(server)
-        .post('/place-order')
-        .type('form')
-        .send({ name: emptyName });
-
-      assert.equal(response.status, 400);
-      assert.include(parseTextFromHTML(response.text, 'body'), 'name is required');
-      const reloadedOrder = await Order.findOne();
-      assert.equal(reloadedOrder.name, name, 'Order name is not overwritten');
-    });
-    */
     it('redirects to the index', async () => {
       const response = await request(server)
         .post('/place-order')
@@ -201,4 +185,25 @@ describe('Routes', () => {
       });
     });
   });
+  
+  describe('POST /clear-order', () => {
+    it('clears all fields', async () => {
+      const newOrder = {
+        name: 'Another Person',
+        cakeType: 'Whole Wheat',
+        fillings: ['Chocolate Chips', 'Banana'],
+        size: '3',
+      };
+      await Order.create(newOrder);
+
+      const response = await request(server)
+        .post('/clear-order')
+        .type('form')
+        .send({});
+
+      const order = await Order.findOne({});
+      assert.isNull(order);
+    });
+  });
 });
+
