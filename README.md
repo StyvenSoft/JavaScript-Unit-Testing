@@ -102,3 +102,36 @@ $ npm test
 7. Teardown
 
 8. Hooks
+
+
+Write Expressive Tests
+
+LESSON 3
+
+Use the Node.js assert library to write more expressive tests.
+
+Exercises
+
+1. Introduction
+
+A good test framework is fast, complete, reliable, isolated, maintainable, and expressive. In this lesson you will learn how to use Node’s assert library to write more expressive tests.
+
+2. assert.ok
+
+- As a Node module, assert can be imported at the top of your files with
+
+```sh
+const assert = require('assert');
+```
+
+3. assert.equal
+
+4. assert.strictEqual
+
+5. assert.deepEqual I
+
+6. assert.deepEqual II
+
+7. Other assert methods
+
+Read the documentation for [assert.notEqual()](https://nodejs.org/api/assert.html#assert_assert_notequal_actual_expected_message)
