@@ -135,3 +135,32 @@ const assert = require('assert');
 7. Other assert methods
 
 Read the documentation for [assert.notEqual()](https://nodejs.org/api/assert.html#assert_assert_notequal_actual_expected_message)
+
+
+Learn TDD With Mocha
+
+LESSON 4
+
+Practice test-driven development to create a JavaScript testing suite using Mocha.js.
+
+Exercises
+
+1. Introduction
+
+- Test-driven development (TDD) is a programming technique where you write test code before implementation code. Test code is written to define the desired behavior of your program.
+
+![red-green-refactor-tdd](public/images/red-green-refactor-tdd.png)
+
+2. Getting Into The Red I
+
+3. Red To Green I
+
+4. Refactor I
+
+5. Getting into the Red II
+
+6. Red to Green II
+
+7. Refactor II
+
+8. Edge Case
