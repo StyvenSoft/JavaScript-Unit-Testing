@@ -161,6 +161,43 @@ Exercises
 
 6. Red to Green II
 
+- Write a for loop that iterates inputArrayLength number of times and adds the value of each element to totalSum.
+
+```js
+ const Calculate = {
+	sum(inputArray) {
+    
+    let totalSum = 0;
+    const inputArrayLength = inputArray.length;
+		for (let i = 0; i < inputArrayLength; i++){
+      totalSum += inputArray[i]
+    }
+    return totalSum
+	}
+}
+
+module.exports = Calculate;
+```
+
 7. Refactor II
+
+- Refactor the code in your index.js file by replacing the current implementation code inside Calculate.sum() with a function that uses the built-in JavaScript method .reduce() to accumulate the total value of an array of numbers.
+
+```js
+const Calculate = {
+  sum(inputArray) {
+
+    return inputArray.reduce((sum, value) => {
+      return sum + value;
+      if (inputArray.length === 0) {
+        return 0;
+      }
+    })
+  }
+}
+
+module.exports = Calculate;
+```
+
 
 8. Edge Case
