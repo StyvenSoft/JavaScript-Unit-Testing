@@ -201,3 +201,66 @@ module.exports = Calculate;
 
 
 8. Edge Case
+
+TDD Feature-Level Tests
+
+LESSON 5
+
+Learn the process of writing feature level tests for a full stack web app, using Outside-in TDD.
+
+Exercises
+
+1. Introduction
+
+Often the hardest part of creating a full-stack web application is knowing where to start. In this lesson, we will use an outside-in development process. With this approach, we start to build our new functionality at the feature level.
+
+- You will learn a few tools for writing feature-level tests.
+
+- You will go through a few rounds of the TDD cycle at the feature level to build an application that renders user input.
+
+- You will end the lesson “in the red,” with a failing feature-level test that you can only address by “dropping” to the server level.
+
+2. Feature Test Toolbelt
+
+**Chai**
+
+Node.js has a default assertion library that provides enough functionality to write basic test code. The Chai testing library extends the types of assertions we can make.
+
+```js
+const {assert} = require('chai');
+```
+
+3. Feature Test I
+
+```js
+const {assert} = require('chai');
+
+describe('User visits root', () => {
+  describe('without existing messages', () => {
+    it('starts blank', () => {
+      browser.url('/');
+    })
+  });
+});
+```
+
+4. Feature Test I: Assert
+
+```js
+const {assert} = require('chai');
+
+describe('User visits root', () => {
+
+  describe('without existing messages', () => {
+    it('starts blank', () => {
+      browser.url('/');
+
+      assert.equal(browser.getText('#messages'), '');
+    });
+  });
+});
+```
+
+5. Feature Test I: Passing, Setup, Exercise, Verify
+
+9. Stuck In The Red
