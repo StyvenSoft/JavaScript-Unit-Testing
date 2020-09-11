@@ -30,5 +30,11 @@ const properties = {
 }
 
 runWithDatabase(async () => {
-    await MagicItem.create(properties)
-})
+    await MagicItem.create(properties);
+
+    let finder = await MagicItem.findOne({ item: "cloak" });
+    console.log(`Found one: ${finder.item}`);
+
+    let cheapObjects = await MagicItem.find({ unitCost: { $lt: 50 } });
+    console.log(`Found ${cheapObjects.length} magic objects`);
+});
