@@ -37,4 +37,20 @@ runWithDatabase(async () => {
 
     let cheapObjects = await MagicItem.find({ unitCost: { $lt: 50 } });
     console.log(`Found ${cheapObjects.length} magic objects`);
+
+    const mostExpensive = await MagicItem.findMostExpensive();
+    console.log(`The most expensive object is the ${mostExpensive.item}`);
+    console.log(`The ${mostExpensive.item} started with ${mostExpensive.totalUnits} charges.`);
+    console.log(`Using ${mostExpensive.item}...`);
+    
+    await mostExpensive.use();
+    console.log(`The ${mostExpensive.item} has ${mostExpensive.totalUnits} charges left.`);
 });
+
+magicItemSchema.statics.findMostExpensive = function (callback) {
+    return this.findOne({}).sort('unitCost').exec(callback);
+}
+magicItemSchema.methods.use = function (callback) {
+    this.totalUnits -= this.unitCost;
+    return this.save();
+}
