@@ -6,8 +6,8 @@ describe('Dinosaur', () => {
 
     describe('#name', () => {
         it('is a String', () => {
-
-
+            const dino = new Dinosaur({ name: 'T-rex' });
+            assert.strictEqual(dino.name, 'T-rex');
         });
     });
 });
