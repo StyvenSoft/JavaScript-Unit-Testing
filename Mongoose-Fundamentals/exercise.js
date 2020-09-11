@@ -19,3 +19,16 @@ const magicItemSchema = new mongoose.Schema({
         required: true
     }
 })
+
+const MagicItem = mongoose.model('MagicItem', magicItemSchema);
+
+const properties = {
+    item: "cloak",
+    magicalProperty: "invisibility",
+    unitCost: 25,
+    totalUnits: 100
+}
+
+runWithDatabase(async () => {
+    await MagicItem.create(properties)
+})
