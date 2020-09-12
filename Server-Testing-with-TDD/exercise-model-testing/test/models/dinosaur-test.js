@@ -4,14 +4,8 @@ const { connectAndDrop, disconnect } = require('../../database');
 
 describe('Dinosaur', () => {
 
-    beforeEach(async () => {
-        await mongoose.connect(databaseUrl, options);
-        await mongoose.connection.db.dropDatabase();
-    });
-
-    afterEach(async () => {
-        await mongoose.disconnect;
-    });
+    beforeEach(connectAndDrop);
+    afterEach(disconnect);
 
     describe('#save', () => {
         it('persists a dino', async () => {
@@ -34,6 +28,36 @@ describe('Dinosaur', () => {
         it('is a String', () => {
             const dino = new Dinosaur({ name: 'T-rex' });
             assert.strictEqual(dino.name, 'T-rex');
+        });
+
+        it('is required', () => {
+            const dino = new Dinosaur({});
+
+            const error = dino.validateSync();
+
+            assert.equal(error.errors.name.message, 'Path `name` is required.');
+            assert.equal(error.errors.name.kind, 'required');
+        });
+    });
+
+    describe('#count', () => {
+        it('is invalid with 11', () => {
+            const dino = new Dinosaur({
+                name: 'T-rex',
+                count: 11,
+                risk: 'High'
+            });
+        });
+    });
+
+    describe('#risk', () => {
+        it('is a String', () => {
+            const dino = new Dinosaur({
+                name: 'T-rex',
+                risk: 'High'
+            });
+
+            assert.strictEqual(dino.risk, 'High');
         });
     });
 });
