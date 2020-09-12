@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const validator = function () {
-    return false;
+const validator = function (value) {
+    return value <= 10;
 }
 
 // Define schema here
@@ -11,7 +11,7 @@ const DinosaurSchema = new mongoose.Schema({
     count: {
         type: Number,
         // Define validate property here
-        validate: validator
+        max: [10, 'Cannot hold more than 10 dinosaurs.']
     },
     risk: { type: String }
 });

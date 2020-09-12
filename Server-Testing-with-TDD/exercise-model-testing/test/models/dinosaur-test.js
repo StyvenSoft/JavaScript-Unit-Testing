@@ -49,6 +49,19 @@ describe('Dinosaur', () => {
             });
             dino.validateSync();
             assert.ok(dino.errors, 'model should have validation error');
+            assert.strictEqual(dino.errors.count.message, 'Cannot hold more than 10 dinosaurs.');
+        });
+
+        it('is valid with 10', () => {
+            const dino = new Dinosaur({
+                name: 'Triceratops',
+                count: 10,
+                risk: 'Low'
+            });
+
+            dino.validateSync();
+
+            assert.isUndefined(dino.errors, 'model should be valid');
         });
     });
 
