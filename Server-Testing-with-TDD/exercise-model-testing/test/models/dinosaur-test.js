@@ -47,6 +47,8 @@ describe('Dinosaur', () => {
                 count: 11,
                 risk: 'High'
             });
+            dino.validateSync();
+            assert.ok(dino.errors, 'model should have validation error');
         });
     });
 
