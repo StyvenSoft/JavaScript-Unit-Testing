@@ -17,8 +17,13 @@ const DinosaurSchema = new mongoose.Schema({
 });
 
 // Define .findByName here
-DinosaurSchema.statics.findByName = function(name, callback) {
+DinosaurSchema.statics.findByName = function (name, callback) {
     return this.findOne({ name: name }, callback);
+};
+
+// Define .breed here
+DinosaurSchema.methods.breed = function () {
+    this.count += 1;
 };
 
 module.exports = mongoose.model('Dinosaur', DinosaurSchema);

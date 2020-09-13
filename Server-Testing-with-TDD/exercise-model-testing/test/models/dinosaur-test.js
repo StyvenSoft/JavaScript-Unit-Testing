@@ -91,4 +91,18 @@ describe('Dinosaur', () => {
             assert.include(stored, fields);
         });
     });
+
+    describe('#breed', () => {
+        it('increases count by 1', () => {
+            const start = 3;
+            const end = 4;
+            const dino = new Dinosaur({
+                name: 'Stegosaurus',
+                count: start,
+                risk: 'Low'
+            });
+            dino.breed();
+            assert.strictEqual(dino.count, end);
+        });
+    });
 });
