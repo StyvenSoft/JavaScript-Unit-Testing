@@ -75,4 +75,20 @@ describe('Dinosaur', () => {
             assert.strictEqual(dino.risk, 'High');
         });
     });
+
+    describe('.findByName', () => {
+        it('returns the first match on name', async () => {
+            const fields = {
+                name: 'Pterodactyl',
+                count: 5,
+                risk: 'Low'
+            };
+            const dino = new Dinosaur(fields);
+            await dino.save();
+
+            const stored = await Dinosaur.findByName('Pterodactyl');
+
+            assert.include(stored, fields);
+        });
+    });
 });

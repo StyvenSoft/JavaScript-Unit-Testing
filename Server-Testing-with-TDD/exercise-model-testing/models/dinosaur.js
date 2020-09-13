@@ -16,4 +16,9 @@ const DinosaurSchema = new mongoose.Schema({
     risk: { type: String }
 });
 
+// Define .findByName here
+DinosaurSchema.statics.findByName = function(name, callback) {
+    return this.findOne({ name: name }, callback);
+};
+
 module.exports = mongoose.model('Dinosaur', DinosaurSchema);
