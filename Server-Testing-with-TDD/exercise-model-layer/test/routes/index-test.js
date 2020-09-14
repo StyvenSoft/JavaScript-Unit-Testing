@@ -2,6 +2,8 @@
 const { assert } = require('chai');
 const request = require('supertest');
 const { jsdom } = require('jsdom');
+const Quote = require('../../models/quote');
+const { connectAndDrop, disconnect } = require('../../database');
 
 const app = require('../../app');
 
@@ -15,6 +17,9 @@ const parseTextFromHTML = (htmlAsString, selector) => {
 };
 
 describe('/', () => {
+    beforeEach(connectAndDrop);
+    afterEach(disconnect);
+    
     describe('POST', () => {
         it('responds with the quote', async () => {
             const quote = 'Our deepest fear is not that we are inadequate. Our deepest fear is that we are powerful beyond measure.';
