@@ -2,7 +2,7 @@
 const app = require('./app');
 const port = process.env.PORT || 4001;
 // Uncomment this line once directed by an error message
-// const {connectAndDrop, disconnect} = require('./database');
+const {connectAndDrop, disconnect} = require('./database');
 
 let expressServer;
 
@@ -23,12 +23,12 @@ exports.config = {
 
     async onPrepare() {
         // Uncomment this line once directed by an error message
-        // connectAndDrop();
+        connectAndDrop();
         expressServer = app.listen(port);
     },
     async onComplete() {
         // Uncomment this line once directed by an error message
-        // disconnect();
+        disconnect();
         await expressServer.close();
     },
 };
