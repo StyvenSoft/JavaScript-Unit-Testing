@@ -1,16 +1,11 @@
 // test/models/quote-test.js
 const {assert} = require('chai');
-const {mongoose, databaseUrl, options} = require('../../database');
+const {connectAndDrop, disconnect} = require('../../database');
 const Quote = require('../../models/quote');
 
 describe('Quote', () => {
-    beforeEach(async () => {
-        await mongoose.connect(databaseUrl, options);
-        await mongoose.connection.db.dropDatabase();
-    });
-    afterEach(async () => {
-        await mongoose.disconnect();
-    });
+    beforeEach(connectAndDrop);
+    afterEach(disconnect);
 
     describe('#quote', () => {
         it('is a String', () => {
