@@ -1,5 +1,5 @@
 // database.js
-/*
+
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
@@ -14,5 +14,5 @@ module.exports = {
   databaseUrl,
   options,
 };
-*/
+
 
